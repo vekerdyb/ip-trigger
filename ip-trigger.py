@@ -12,7 +12,7 @@ import importlib
 
 logger = logging.getLogger(__name__)
 
-STORAGE_FILE = '/tmp/ip-trigger-storage'
+STORAGE_FILE = 'ip-trigger-storage'
 GET_IP_URL = 'https://api.ipify.org?format=json'
 
 EMAIL_BACKEND = 'railgun_backend'
@@ -77,9 +77,9 @@ def run():
 def trigger_update(old_ip, new_ip):
     logger.debug('Sending email to "{}", becuase IP changed from "{}" to "{}"'.format(config.EMAIL_RECIPIENT, old_ip, new_ip))
     response = email_backend.send_simple_message(
-        from_name=config.FROM_NAME, 
-        to=config.EMAIL_RECIPIENT, 
-        subject=config.EMAIL_SUBJECT, 
+        from_name=config.FROM_NAME,
+        to=config.EMAIL_RECIPIENT,
+        subject=config.EMAIL_SUBJECT,
         text=config.EMAIL_TEXT_TEMPLATE.format(new_ip)
     )
     logger.debug('Email server response: "{}"'.format(response.json()))

@@ -1,0 +1,8 @@
+RAILGUN_HOST = '<your host>'
+RAILGUN_API_KEY = '<your-key>'
+EMAIL_BACKEND = 'railgun_backend'
+
+EMAIL_SUBJECT = '<whatever you want, eg: IP change on example.com>'
+EMAIL_TEXT_TEMPLATE = '{}' # again, this can be whatever you want, but it must contain a single {} where the new IP will be inserted
+EMAIL_RECIPIENT = 'Your Name <you@host.com>'
+FROM_NAME = '<whatever you want as the sender name of the email>'
