@@ -7,4 +7,4 @@ if [ -z "$MY_PATH" ] ; then
   # to the script (e.g. permissions re-evaled after suid)
   exit 1  # fail
 fi
-docker-compose -f $MY_PATH/docker-compose.yml run ip-trigger python ip-trigger.py
+docker-compose -f $MY_PATH/docker-compose.pi.yml run ip-trigger python3 ip-trigger.py

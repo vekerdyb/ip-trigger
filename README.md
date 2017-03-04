@@ -22,3 +22,7 @@ E.g. I run it once every hour, at half past:
 30 * * * * /<path>/ip-trigger/run.sh
 ```
 
+## On a Raspberry Pi
+
+Do as above but use `./run.pi.py`
+

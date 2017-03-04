@@ -1,0 +1,8 @@
+version: '2'
+services:
+    ip-trigger:
+        build: 
+            context: .
+            dockerfile: Dockerfile.pi
+        volumes:
+        - .:/app
