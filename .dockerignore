@@ -1,0 +1,5 @@
+__pycache__
+.git
+config.py.tmp
+README.md
+run.sh
