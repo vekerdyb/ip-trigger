@@ -7,6 +7,8 @@ Send emails when the ip address of the host changes.
 
 Docker, docker-compose.
 
+(On a pi? Install following these: https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/, https://github.com/hypriot/arm-compose)
+
 # Setup
 
 Clone the repo `git clone git@github.com:vekerdyb/ip-trigger.py`
