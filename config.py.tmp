@@ -1,8 +1,23 @@
-RAILGUN_HOST = '<your host>'
-RAILGUN_API_KEY = '<your-key>'
-EMAIL_BACKEND = 'railgun_backend'
+BACKENDS = [
+    # Uncomment the following line if you want to send emails via Railgun when your ip changes
+    # 'railgun_backend',
+    # Uncomment the following line if you use Namecheap DynDNS
+    # 'namecheap_backend',
+]
 
-EMAIL_SUBJECT = '<whatever you want, eg: IP change on example.com>'
-EMAIL_TEXT_TEMPLATE = '{}' # again, this can be whatever you want, but it must contain a single {} where the new IP will be inserted
-EMAIL_RECIPIENT = 'Your Name <you@host.com>'
-FROM_NAME = '<whatever you want as the sender name of the email>'
+RAILGUN = {
+    'HOST': '<your host>',
+    'API_KEY': '<your key>',
+    'EMAIL_SUBJECT': '<whatever you want, eg: IP change on example.com>',
+    'EMAIL_TEXT_TEMPLATE': '{}', # again, this can be whatever you want, but it must contain a single {} where the new IP will be inserted
+    'EMAIL_RECIPIENT': 'Your Name <you@host.com>',
+    'FROM_NAME': '<whatever you want as the sender of the email>',
+}
+
+NAMECHEAP = {
+    # NOTE: The values for the host name and domain must be lowercase.
+    # Please make sure you are using your Dynamic DNS password and not the Namecheap account's one.
+    'host': '<your namecheap DNS host, e.g. "@">',
+    'domain': '<your domain name, e.g. yourdomain.tld>',
+    'password': '<your Namecheap DynDNS password>',
+}
