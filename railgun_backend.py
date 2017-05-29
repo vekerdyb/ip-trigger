@@ -21,7 +21,8 @@ def _send_simple_message(from_name, to, subject, text):
 
 
 def on_ip_change(new_ip, log_handler=logger):
-    log_handler.debug('Sending email to "{}", becuase IP changed to "{}"'.format(config.RAILGUN['EMAIL_RECIPIENT'], new_ip))
+    log_handler.debug(
+        'Sending email to "{}", becuase IP changed to "{}"'.format(config.RAILGUN['EMAIL_RECIPIENT'], new_ip))
 
     response = _send_simple_message(
         from_name=config.RAILGUN['FROM_NAME'],

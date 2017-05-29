@@ -6,9 +6,7 @@ import config
 
 logger = logging.getLogger(__name__)
 
-
 URL = 'https://dynamicdns.park-your-domain.com/update?'
-
 
 
 def on_ip_change(new_ip, log_handler=logger):
@@ -20,10 +18,7 @@ def on_ip_change(new_ip, log_handler=logger):
     data = config.NAMECHEAP
     data['ip'] = new_ip
 
-    response = requests.get(
-        URL,
-        data
-    )
+    response = requests.get(URL, data)
 
     log_handler.debug('Constructed Namecheap url: {}{}'.format(response.request.url, response.request.body))
 

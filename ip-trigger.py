@@ -3,12 +3,13 @@
 Use ipify.org to check the current ip address.
 If the ip address has changed, trigger an event.
 """
-import config
+import importlib
 import logging
 import subprocess
 
 import requests
-import importlib
+
+import config
 
 logger = logging.getLogger(__name__)
 
