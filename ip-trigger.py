@@ -15,10 +15,6 @@ logger = logging.getLogger(__name__)
 STORAGE_FILE = 'ip-trigger-storage'
 GET_IP_URL = 'https://api.ipify.org?format=json'
 
-EMAIL_BACKEND = 'railgun_backend'
-
-email_backend = importlib.import_module(EMAIL_BACKEND)
-
 def store_ip(ip):
     logger.debug('Attempting to open "{}" for appending'.format(STORAGE_FILE))
     file = open(STORAGE_FILE, 'a')
@@ -70,19 +66,19 @@ def run():
     current_ip = detect_current_ip()
     last_ip = retrieve_last_ip_from_storage()
     if is_update_needed(last_ip, current_ip):
-        trigger_update(last_ip, current_ip)
+        trigger_update(current_ip)
         store_ip(current_ip)
 
 
-def trigger_update(old_ip, new_ip):
-    logger.debug('Sending email to "{}", becuase IP changed from "{}" to "{}"'.format(config.EMAIL_RECIPIENT, old_ip, new_ip))
-    response = email_backend.send_simple_message(
-        from_name=config.FROM_NAME,
-        to=config.EMAIL_RECIPIENT,
-        subject=config.EMAIL_SUBJECT,
-        text=config.EMAIL_TEXT_TEMPLATE.format(new_ip)
-    )
-    logger.debug('Email server response: "{}"'.format(response.json()))
+def trigger_update(new_ip):
+    for backend_name in config.BACKENDS:
+        backend_module = importlib.import_module(backend_name)
+        on_ip_change = getattr(backend_module, 'on_ip_change')
+        result = on_ip_change(new_ip, log_handler=logger)
+        if result:
+            logger.info('Backend {} trigger was successful'.format(backend_name))
+        else:
+            logger.error('Backend {} trigger was unsuccessful'.format(backend_name))
 
 if __name__ == '__main__':
     init_logger()
