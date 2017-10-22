@@ -3,6 +3,8 @@ BACKENDS = [
     # 'railgun_backend',
     # Uncomment the following line if you use Namecheap DynDNS
     # 'namecheap_backend',
+    # Uncomment the following line if you use Cloudflare API
+    # 'cloudflare_backend',
 ]
 
 RAILGUN = {
@@ -20,4 +22,19 @@ NAMECHEAP = {
     'host': '<your namecheap DNS host, e.g. "@">',
     'domain': '<your domain name, e.g. yourdomain.tld>',
     'password': '<your Namecheap DynDNS password>',
+}
+
+CLOUDFLARE = {
+    'apiKey': '<the Cloudflare API key (Global API Key, https://www.cloudflare.com/a/profile)>',
+    'baseUrl': 'https://api.cloudflare.com/client/v4/', # Don't change this unless you know what you're doing
+    'dnsRecordData': {
+        'type': '<e.g. "A">',
+        'name': '<your domain name, e.g. yourdomain.tld>',
+        'ttl': <number of seconds, 1=automatic>,
+        'proxied': <True or False>
+    },
+    'dnsRecordId': '<the Cloudflare DNS Record id. See https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records>',
+    'email': '<your Cloudflare email>',
+    'serviceKey': '<the Cloudflare Service key (Origin CA Key, https://www.cloudflare.com/a/profile)>',
+    'zoneId': '<the Cloudflare zone id. See https://api.cloudflare.com/#zone-list-zones>',
 }

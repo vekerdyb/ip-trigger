@@ -13,7 +13,7 @@ Docker, docker-compose.
 
 Clone the repo `git clone git@github.com:vekerdyb/ip-trigger.py`
 
-Rename `config.py.tmp` to `config.py` and change the values.
+Rename `config.py.tmp` to `config.py` and change the values. Uncomment any backend you want to use.
 
 Run: `docker-compose run ip-trigger python ip-trigger.py` or simply `./run.sh`.
 
@@ -28,3 +28,9 @@ E.g. I run it once every hour, at half past:
 
 Do as above but use `./run.pi.py`
 
+# Supported backends:
+- Railgun (sends an email when the IP changes)
+- Namecheap DynDNS
+- Cloudflare
+
+Drop me a line or submit a pull request if you'd like to add more.
