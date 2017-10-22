@@ -1,7 +1,7 @@
 # ip-trigger
 Low cost artisan dyndns.
 
-Send emails when the ip address of the host changes.
+Automatically update DNS records with multiple providers. Also can send emails when the ip address of the host changes.
 
 # Requirements
 
