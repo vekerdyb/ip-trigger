@@ -1,3 +1,7 @@
+# Set this to the interface you want to use. Leave empty for default.
+# e.g. "enp2s0"
+INTERFACE = ""
+
 BACKENDS = [
     # Uncomment the following line if you want to send emails via Railgun when your ip changes
     # 'railgun_backend',
