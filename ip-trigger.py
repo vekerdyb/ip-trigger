@@ -48,18 +48,24 @@ def curl_get(url, interface=None):
 
 def store_ip(ip):
     logger.debug('Attempting to open "{}" for appending'.format(STORAGE_FILE))
-    file = open(STORAGE_FILE, "a")
-    file.write(ip + "\n")
-    file.close()
+    with open(STORAGE_FILE, "a") as file:
+        file.write(ip + "\n")
     logger.debug("IP {} stored in file".format(ip))
 
 
 def retrieve_last_ip_from_storage():
     logger.debug('Attempting to retrieve last IP from "{}"'.format(STORAGE_FILE))
-    last_ip = subprocess.check_output(["tail", "-1", STORAGE_FILE])
-    last_ip = last_ip.strip().decode("utf-8")
-    logger.debug('Last IP: "{}"'.format(last_ip))
-    return last_ip
+    try:
+        last_ip = subprocess.check_output(["tail", "-1", STORAGE_FILE])
+        last_ip = last_ip.strip().decode("utf-8")
+        if not last_ip:
+            logger.debug("Storage file is empty")
+            return ""
+        logger.debug('Last IP: "{}"'.format(last_ip))
+        return last_ip
+    except subprocess.CalledProcessError:
+        logger.debug("Storage file does not exist or cannot be accessed")
+        return ""
 
 
 def detect_current_ip():
