@@ -48,9 +48,8 @@ def curl_get(url, interface=None):
 
 def store_ip(ip):
     logger.debug('Attempting to open "{}" for appending'.format(STORAGE_FILE))
-    file = open(STORAGE_FILE, "a")
-    file.write(ip + "\n")
-    file.close()
+    with open(STORAGE_FILE, "a") as file:
+        file.write(ip + "\n")
     logger.debug("IP {} stored in file".format(ip))
 
 
