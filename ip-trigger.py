@@ -58,10 +58,13 @@ def retrieve_last_ip_from_storage():
     try:
         last_ip = subprocess.check_output(["tail", "-1", STORAGE_FILE])
         last_ip = last_ip.strip().decode("utf-8")
+        if not last_ip:
+            logger.debug("Storage file is empty")
+            return ""
         logger.debug('Last IP: "{}"'.format(last_ip))
         return last_ip
     except subprocess.CalledProcessError:
-        logger.debug("Storage file is empty or cannot be read")
+        logger.debug("Storage file does not exist or cannot be accessed")
         return ""
 
 
