@@ -55,10 +55,14 @@ def store_ip(ip):
 
 def retrieve_last_ip_from_storage():
     logger.debug('Attempting to retrieve last IP from "{}"'.format(STORAGE_FILE))
-    last_ip = subprocess.check_output(["tail", "-1", STORAGE_FILE])
-    last_ip = last_ip.strip().decode("utf-8")
-    logger.debug('Last IP: "{}"'.format(last_ip))
-    return last_ip
+    try:
+        last_ip = subprocess.check_output(["tail", "-1", STORAGE_FILE])
+        last_ip = last_ip.strip().decode("utf-8")
+        logger.debug('Last IP: "{}"'.format(last_ip))
+        return last_ip
+    except subprocess.CalledProcessError:
+        logger.debug("Storage file does not exist or cannot be accessed")
+        return ""
 
 
 def detect_current_ip():
