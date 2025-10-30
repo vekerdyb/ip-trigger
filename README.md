@@ -11,7 +11,7 @@ Docker, docker-compose.
 
 # Setup
 
-Clone the repo `git clone git@github.com:vekerdyb/ip-trigger.py`
+Clone the repo `git clone git@github.com:vekerdyb/ip-trigger.git`
 
 Rename `config.py.tmp` to `config.py` and change the values. Uncomment any backend you want to use.
 
