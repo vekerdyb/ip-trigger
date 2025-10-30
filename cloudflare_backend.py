@@ -6,6 +6,8 @@ import config
 
 logger = logging.getLogger(__name__)
 
+URL = 'https://api.cloudflare.com/client/v4/'
+
 
 def on_ip_change(new_ip, log_handler=logger):
     log_handler.debug('Attempting to update Cloudflare IP for host {} to {}'.format(
